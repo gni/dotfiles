@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="traista/traista"
 
 # Useful plugins
-plugins=(gitfast last-working-dir rbenv common-aliases zsh-syntax-highlighting history-substring-search)
+plugins=(gitfast last-working-dir rbenv common-aliases zsh-syntax-highlighting history-substring-search zsh-autosuggestions)
 
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"

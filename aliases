@@ -1,5 +1,5 @@
 # Get External IP / local IPs
-alias ip="curl ipinfo.io/ip"
+alias extip="curl ipinfo.io/ip"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 
@@ -10,50 +10,46 @@ alias serve='ruby -run -e httpd . -p 8000'  # Or python -m SimpleHTTPServer :)
 # Docker alias and function
 # ------------------------------------
 
-# Get latest container ID
-alias dl="docker ps -l -q"
+# Docker container management
+alias dpa='docker ps -a'
+alias dps='docker ps'
+alias dst='docker stats'
+alias dstart='docker start'
+alias dstop='docker stop'
+alias drestart='docker restart'
+alias dexec='docker exec -it'
+alias drun='docker run'
+alias dlogs='docker logs'
 
-# Get container process
-alias dps="docker ps"
+# Docker image management
+alias dimages='docker images'
+alias dinspect='docker image inspect'
+alias dremove='docker image rm'
 
-# Get process included stop container
-alias dpa="docker ps -a"
+# Docker volume management
+alias dvolumes='docker volume ls'
+alias dvinspect='docker volume inspect'
+alias dvr='docker volume rm'
 
-# Get images
-alias di="docker images"
+# Docker network management
+alias dnetworks='docker network ls'
+alias dninspect='docker network inspect'
+alias dnrm='docker network rm'
 
-# Get container IP
-alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-
-# Run deamonized container, e.g., $dkd base /bin/echo hello
-alias dkd="docker run -d -P"
-
-# Run interactive container, e.g., $dki base /bin/bash
-alias dki="docker run -i -t -P"
-
-# Execute interactive container, e.g., $dex base /bin/bash
-alias dex="docker exec -i -t"
-
-# Stop all containers
-dstop() { docker stop $(docker ps -a -q); }
-
-# Remove all containers
-drm() { docker rm $(docker ps -a -q); }
-
-# Stop and Remove all containers
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-
-# Remove all images
-dri() { docker rmi $(docker images -q); }
+# Docker-compose aliases
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dcrestart='docker-compose restart'
+alias dcb='docker-compose build'
+alias dcpull='docker-compose pull'
+alias dcps='docker-compose ps'
+alias dclogs='docker-compose logs'
 
 # Dockerfile build, e.g., $dbu docker/test
 dbu() { docker build -t=$1 .; }
 
 # Show all alias related docker
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
-
-# Bash into running container
-dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 
 # Listing files
 alias l='ls -al'
