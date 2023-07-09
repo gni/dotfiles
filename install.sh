@@ -35,6 +35,10 @@ if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "Installing zsh plugin 'zsh-syntax-highlighting'..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting
 fi
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
+  echo "Installing zsh plugin 'zsh-autosuggestions'..."
+  git clone https://github.com/zsh-users/zsh-autosuggestions
+fi
 cd "$CURRENT_DIR"
 
 # zsh themes
@@ -43,7 +47,7 @@ ZSH_THEMES_DIR="$HOME/.oh-my-zsh/custom/themes"
 mkdir -p "$ZSH_THEMES_DIR" && cd "$ZSH_THEMES_DIR"
 if [ ! -d "$ZSH_THEMES_DIR/traista" ]; then
   echo "Installing zsh theme 'traistă'..."
-  git clone https://github.com/odgon/traista
+  git clone https://github.com/exaluc/traista
 fi
 cd "$CURRENT_DIR"
 
