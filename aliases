@@ -58,5 +58,68 @@ alias lth='l -t|head'
 alias lh='ls -Shl | less'
 alias tf='tail -f -n 100'
 
-# Display date on terminal
-alias whour="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &"
+# Networking - Security and Troubleshooting
+alias ports='netstat -tuln'
+alias ping='ping -c 5'
+alias traceroute='traceroute -I'
+alias ifc='ifconfig'
+alias iw='iwconfig'
+alias arp='arp -a'
+alias nslookup='nslookup -type=any'
+alias dig='dig +nocmd'
+alias nmap='sudo nmap'
+alias tcpdump='sudo tcpdump -i any'
+alias ss='ss -tunlp'
+alias mtr='sudo mtr'
+alias http='curl -I'
+alias headers='curl -I'
+
+# Network Analysis and Monitoring
+alias iftop='sudo iftop -nNP'
+alias ngrep='sudo ngrep -d any'
+
+# SSH
+alias ssh='ssh -o StrictHostKeyChecking=no'
+alias ssha='ssh-add'
+
+# Wireless
+alias wifi='nmcli device wifi list'
+alias wifion='nmcli radio wifi on'
+alias wifioff='nmcli radio wifi off'
+
+# Network File Transfer
+alias sftp='sftp -oBatchMode=no'
+alias scp='scp -oBatchMode=no'
+
+# Firewall
+alias fwlist='sudo iptables -L -n -v --line-numbers'
+alias fwc='sudo ufw enable'
+alias fwa='sudo ufw allow'
+alias fwi='sudo ufw deny'
+alias fws='sudo ufw status'
+
+# Disk Usage
+alias duh='du -h'
+alias duf='du -sh * | sort -rh'
+
+# File Information
+alias fileinfo='file -b'
+alias filemime='file -i'
+
+# Disk Usage Statistics
+alias dfh='df -h'
+alias dfi='df -i'
+alias mount='mount | column -t'
+
+# File Comparison
+alias diff='colordiff'
+
+# Archive Creation
+alias tarc='tar -czvf'
+alias tarx='tar -xzvf'
+
+# Archive Extraction
+alias un7z='7z x'
+alias unrar='unrar x'
+alias untar='tar -xzvf'
+alias unzip='unzip -o'
