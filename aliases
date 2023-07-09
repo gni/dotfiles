@@ -4,11 +4,9 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 
 # Quickly serve the current directory as HTTP
-alias serve='ruby -run -e httpd . -p 8000'  # Or python -m SimpleHTTPServer :)
-
-# ------------------------------------
-# Docker alias and function
-# ------------------------------------
+alias httprb='ruby -run -e httpd . -p 8000'
+alias httpy='python -m http.server 8000'
+alias httpjs='http-server'
 
 # Docker container management
 alias dpa='docker ps -a'
