@@ -38,14 +38,21 @@ fi
 # nvm (lazy — nvm is the slowest, ~400ms)
 if [ -d "$HOME/.nvm" ]; then
   export NVM_DIR="$HOME/.nvm"
+  # Add default node to PATH so tools like vim/coc.nvim can find it
+  local nvm_default="$NVM_DIR/alias/default"
+  if [ -f "$nvm_default" ]; then
+    local nvm_version
+    nvm_version="$(cat "$nvm_default")"
+    local nvm_node_dir="$NVM_DIR/versions/node"
+    # Resolve partial version (e.g. "20") to full path
+    local nvm_node_path="$(ls -d "$nvm_node_dir"/v${nvm_version}* 2>/dev/null | tail -1)"
+    [ -n "$nvm_node_path" ] && export PATH="$nvm_node_path/bin:$PATH"
+  fi
   _nvm_lazy_load() {
-    unset -f nvm node npm npx 2>/dev/null
+    unset -f nvm 2>/dev/null
     [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
   }
-  nvm()  { _nvm_lazy_load; nvm "$@"; }
-  node() { _nvm_lazy_load; node "$@"; }
-  npm()  { _nvm_lazy_load; npm "$@"; }
-  npx()  { _nvm_lazy_load; npx "$@"; }
+  nvm() { _nvm_lazy_load; nvm "$@"; }
 fi
 
 # fnm (lazy)
