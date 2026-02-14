@@ -105,6 +105,13 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
+# Set zsh as default shell if it isn't already
+if [ "$(basename "$SHELL")" != "zsh" ]; then
+  echo "${CYAN}Setting zsh as default shell...${NC}"
+  chsh -s "$(which zsh)"
+  echo "  ${GREEN}Done${NC}. Log out and back in for it to take effect."
+fi
+
 # ----------------------------------------------------------------------------
 #  Symlinks
 # ----------------------------------------------------------------------------
