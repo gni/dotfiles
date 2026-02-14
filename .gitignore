@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Zsh compiled files
+*.zwc
+
+# Linux
+.directory
+
+# Backups created by install.sh
+.dotfiles_backup_*

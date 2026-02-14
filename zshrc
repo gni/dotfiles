@@ -1,20 +1,32 @@
+# Resolve the dotfiles directory by following the ~/.zshrc symlink
+DOTFILES_DIR="${${:-$HOME/.zshrc}:A:h}"
+
+# Set Zsh home
 ZSH=$HOME/.oh-my-zsh
 
+# Disable oh-my-zsh auto-update prompt (saves a check on every startup)
+DISABLE_AUTO_UPDATE="true"
+
+# Disable magic functions (speeds up pasting in terminal)
+DISABLE_MAGIC_FUNCTIONS="true"
+
+# Load the theme
 ZSH_THEME="traista/traista"
 
-# Useful plugins
-plugins=(gitfast last-working-dir rbenv common-aliases zsh-syntax-highlighting history-substring-search zsh-autosuggestions)
+# Load plugins list
+source "$DOTFILES_DIR/zsh/plugins.zsh"
 
-# Actually load Oh-My-Zsh
+# Actually load Oh-My-Zsh (must come before custom config so our aliases take priority)
 source "${ZSH}/oh-my-zsh.sh"
 
-# Store aliases in the ~/.aliases file and load the here.
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+# Load exports
+source "$DOTFILES_DIR/zsh/exports.zsh"
 
-# Store exports in the ~/.exports file and load the here.
-[[ -f "$HOME/.exports" ]] && source "$HOME/.exports"
+# Load custom configuration
+source "$DOTFILES_DIR/zsh/config.zsh"
 
-# Encoding stuff for the terminal
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# Load custom functions
+source "$DOTFILES_DIR/zsh/functions.zsh"
 
+# Load aliases (last, so they override everything)
+source "$DOTFILES_DIR/zsh/aliases.zsh"
